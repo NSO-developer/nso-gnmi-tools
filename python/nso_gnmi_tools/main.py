@@ -1,4 +1,7 @@
 # -*- mode: python; python-indent: 4 -*-
+import os
+import sys
+
 import ncs
 
 from confd_gnmi_common import PORT
@@ -22,7 +25,7 @@ class Main(ncs.application.Application):
         # as specified in the corresponding data model.
         #
         # self.register_service('nso-gnmi-tools-servicepoint', ServiceCallbacks)
-
+        sys.path.append(os.getenv('NCS_DIR') + "/src/ncs/pyapi/ncs")
         self.server = ConfDgNMIServicer.serve(PORT, AdapterType.API, insecure=True)
         self.log.info('gNMI server created')
 
@@ -36,7 +39,8 @@ class Main(ncs.application.Application):
         # When the application is finished (which would happen if NCS went
         # down, packages were reloaded or some error occurred) this teardown
         # method will be called.
-
-        self.server.stop()
+        self.log.info('teardown - calling stop ')
+        self.server.stop(1)
+        self.log.info('teardown - wait for termination')
         self.server.wait_for_termination()
         self.log.info('Main FINISHED')

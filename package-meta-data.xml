@@ -1,0 +1,13 @@
+<ncs-package xmlns="http://tail-f.com/ns/ncs-packages">
+  <name>nso-gnmi-tools</name>
+  <package-version>0.1</package-version>
+  <description>NSO gNMI Adapter</description>
+  <ncs-min-version>6.0</ncs-min-version>
+
+  <component>
+    <name>main</name>
+    <application>
+      <python-class-name>nso_gnmi_tools.main.Main</python-class-name>
+    </application>
+  </component>
+</ncs-package>

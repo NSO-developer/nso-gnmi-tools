@@ -1,0 +1,47 @@
+== gNMI Adapter for NSO
+
+This is gNMI Adapter NSO Python package.
+This package adds gNMI support to NSO.
+
+It contains a YANG data model which implements the configuration (port, security).
+
+=== Build
+
+You will also need sources from  https://github.com/ConfD-Developer/gnmi-tools
+linked into `python` directory (e.g. `cd python; ln -s ../../gnmi-tools/src/*.py .; cd ..`).
+
+=== Configuration
+
+Following elements can be configured.
+
+TODO:: Will be added
+
+=== Run
+
+Create NSO run dir
+
+----
+ncs-project create nso-gnmi`
+----
+
+and link this package to `packages` folder, e.g.
+
+----
+cd packages; ln -s ../../nso-gnmi-tools/; cd ..`
+----
+
+start nso `ncs` or ncs --package-with-reload`
+
+
+=== Usage
+
+Use gNMI client (e.g. one present in `gnmi-tools`) to invoke gNMI operations
+against config and state data in NSO.
+
+E.g.:
+
+----
+./src/confd_gnmi_client.py --insecure -o capabilities
+./src/confd_gnmi_client.py --insecure -o get  --path /python-vm
+./src/confd_gnmi_client.py --insecure -o subscribe -s POLL --poll-count=100  --path /python-vm --allow-aggregation
+----

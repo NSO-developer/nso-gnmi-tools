@@ -1,0 +1,26 @@
+module nso-gnmi-tools {
+
+  namespace "http://cisco.com/nso-gnmi-tools";
+  prefix nso-gnmi-tools;
+
+  import tailf-common {
+    prefix tailf;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  description
+    "gNMI adapter configuration";
+
+  revision 2023-06-19 {
+    description
+      "Initial revision.";
+  }
+
+  container nso-gnmi-tools {
+    description "This is gNMI adapter config";
+    // TODO
+
+  }
+}
