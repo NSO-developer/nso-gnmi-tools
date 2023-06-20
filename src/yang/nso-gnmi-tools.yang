@@ -3,24 +3,65 @@ module nso-gnmi-tools {
   namespace "http://cisco.com/nso-gnmi-tools";
   prefix nso-gnmi-tools;
 
-  import tailf-common {
-    prefix tailf;
-  }
-  import tailf-ncs {
-    prefix ncs;
+//  import tailf-common {
+//    prefix tailf;
+//  }
+//  import tailf-ncs {
+//    prefix ncs;
+//  }
+
+  import ietf-inet-types {
+    prefix inet;
   }
 
   description
     "gNMI adapter configuration";
 
-  revision 2023-06-19 {
+  revision 2023-06-20 {
     description
       "Initial revision.";
   }
 
   container nso-gnmi-tools {
     description "This is gNMI adapter config";
-    // TODO
+     leaf port {
+      type inet:port-number;
+      default 50061;
+      description
+        "Port is a valid port number to be used by gNMI server.";
+    }
+    container tls {
+      leaf enabled {
+        type boolean;
+        default false;
+        description
+          "enabled is either 'true' or 'false'. If 'true', the
+          gNMI server uses TLS as a transport service.";
+      }
+      leaf keyFile {
+        type string;
+        description
+          "Specifies which file that contains the private key for
+          the certificate.";
+      }
+      leaf certFile {
+        type string;
+        description
+          "Specifies which file that contains the server
+          certificate. The certificate is either a self-signed
+          test certificate or a genuin and validated certificate
+          bought from a CA (Certificate Authority).
 
+          Example to generate sample certificates for server and client
+
+          openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout server.key
+           -subj '/CN=localhost/C=US/ST=CA/L=SanJose/O=Cisco/CN=www.cisco.com'
+           -out server.crt
+
+          openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout client.key
+           -subj '/CN=localhost/C=US/ST=CA/L=SanJose/O=Cisco/CN=www.cisco.com'
+           -out client.crt";
+      }
+    }
   }
 }
