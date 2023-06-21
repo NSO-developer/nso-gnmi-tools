@@ -12,9 +12,14 @@ linked into `python` directory (e.g. `cd python; ln -s ../../gnmi-tools/src/*.py
 
 === Configuration
 
-Following elements can be configured.
+Following elements can be configured (`nso-gnmi-tools.yang`).
 
-TODO:: Will be added
+* `nso-gnmi-tools/port` - the port the gNMI server listens on
+* `nso-gnmi-tools/tls/enabled` - if TLS is enabled
+* `nso-gnmi-tools/tls/keyFile` - server key file (must be configured if TLS is enabled)
+* `nso-gnmi-tools/tls/certFile` - certificate file (must be configured if TLS is enabled)
+
+NOTE: Example how to create server key and certificate file, see `gnmi-tools` sources, file `make-keys.sh`.
 
 === Run
 
@@ -30,7 +35,12 @@ and link this package to `packages` folder, e.g.
 cd packages; ln -s ../../nso-gnmi-tools/; cd ..`
 ----
 
+NOTE: Optionally, copy server ksy and certificate file to this directory.
+
 start nso `ncs` or ncs --package-with-reload`
+
+When NSO is started, the gNMI server is started as well.
+When `nso-gnmi-tools` configuration is changed, the gNMI server is restarted with new configuration.
 
 
 === Usage

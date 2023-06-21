@@ -49,18 +49,17 @@ class Main(ncs.application.Application):
         port = cdb.get(rsock, "/nso-gnmi-tools/port")
         self.log.info(f"enabled cdb.get={cdb.get(rsock, '/nso-gnmi-tools/tls/enabled')}")
         insecure = cdb.get(rsock, "/nso-gnmi-tools/tls/enabled") != "true"
-        self.log.info(f"insecure={insecure}")
         if not insecure:
             if cdb.exists(rsock, "/nso-gnmi-tools/tls/keyFile"):
                 # TODO
-                key_file = cdb.get(rsock, "/nso-gnmi-tools/tls/keyFile")
+                key_file = str(cdb.get(rsock, "/nso-gnmi-tools/tls/keyFile"))
             if cdb.exists(rsock, "/nso-gnmi-tools/tls/certFile"):
                 # TODO
-                crt_file = cdb.get(rsock, "/nso-gnmi-tools/tls/certFile")
+                crt_file = str(cdb.get(rsock, "/nso-gnmi-tools/tls/certFile"))
 
 
         cdb.close(rsock)
-
+        self.log.info(f"insecure={insecure} key_file={key_file} crt_file={crt_file}")
         self.server = ConfDgNMIServicer.serve(port, AdapterType.API,
                                               insecure=insecure,
                                               key_file=key_file,
