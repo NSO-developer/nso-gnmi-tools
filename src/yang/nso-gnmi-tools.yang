@@ -3,12 +3,6 @@ module nso-gnmi-tools {
   namespace "http://cisco.com/nso-gnmi-tools";
   prefix nso-gnmi-tools;
 
-//  import tailf-common {
-//    prefix tailf;
-//  }
-//  import tailf-ncs {
-//    prefix ncs;
-//  }
 
   import ietf-inet-types {
     prefix inet;
@@ -34,27 +28,24 @@ module nso-gnmi-tools {
       leaf enabled {
         type boolean;
         default false;
+        must ".='false' or (../keyFile and ../certFile)";
         description
-          "enabled is either 'true' or 'false'. If 'true', the
+          "'enabled' is either 'true' or 'false'. If 'true', the
           gNMI server uses TLS as a transport service.";
       }
       leaf keyFile {
         type string;
-        mandatory true;
-        when "../enabled='true'";
         description
           "Specifies which file that contains the private key for
           the certificate.";
       }
       leaf certFile {
         type string;
-        mandatory true;
-        when "../enabled='true'";
         description
           "Specifies which file that contains the server
           certificate. The certificate is either a self-signed
           test certificate or a genuine and validated certificate
-          bought from a CA (Certificate Authority).
+          bought from a CA (Certificate Authority).";
       }
     }
   }
