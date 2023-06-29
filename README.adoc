@@ -55,3 +55,10 @@ E.g.:
 ./src/confd_gnmi_client.py --insecure -o get  --path /python-vm
 ./src/confd_gnmi_client.py --insecure -o subscribe -s POLL --poll-count=100  --path /python-vm --allow-aggregation
 ----
+
+=== Issues and error reporting
+
+Report only NSO package related issue. gNMI related issues should be reported in original `gnmi-tools` repository.
+
+
+TIP: Run gNMI server standalone against NSO (`./src/confd_gnmi_server -t nso`) when reproducing the gNMI related issue.
