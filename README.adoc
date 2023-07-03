@@ -1,6 +1,6 @@
 == gNMI Adapter for NSO
 
-This is gNMI Adapter NSO Python package.
+This is an gNMI Adapter NSO Python package.
 This package adds gNMI support to NSO.
 
 It contains a YANG data model which implements the configuration (port, security).
@@ -8,7 +8,7 @@ It contains a YANG data model which implements the configuration (port, security
 === Build
 
 You will also need sources from  https://github.com/ConfD-Developer/gnmi-tools
-linked into `python` directory (e.g. `cd python; ln -s ../../gnmi-tools/src/*.py .; cd ..`).
+linked into the `python` directory (e.g. `cd python; ln -s ../../gnmi-tools/src/*.py .; cd ..`).
 
 === Configuration
 
@@ -37,10 +37,10 @@ cd packages; ln -s ../../nso-gnmi-tools/; cd ..`
 
 NOTE: Optionally, copy server ksy and certificate file to this directory.
 
-start nso `ncs` or ncs --package-with-reload`
+start nso `ncs` or `ncs --package-with-reload`
 
 When NSO is started, the gNMI server is started as well.
-When `nso-gnmi-tools` configuration is changed, the gNMI server is restarted with new configuration.
+When `nso-gnmi-tools` configuration is changed, the gNMI server is restarted with the new configuration.
 
 
 === Usage
@@ -58,7 +58,7 @@ E.g.:
 
 === Issues and error reporting
 
-Report only NSO package related issue. gNMI related issues should be reported in original `gnmi-tools` repository.
+Report only NSO package related issues. gNMI related issues should be reported in original `gnmi-tools` repository.
 
 
 TIP: Run gNMI server standalone against NSO (`./src/confd_gnmi_server -t nso`) when reproducing the gNMI related issue.
